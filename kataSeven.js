@@ -82,7 +82,89 @@ function largest(n, arr) {
     .reverse();
 }
 
-console.log(largest(2, [7, 6, 5, 4, 3, 2, 1])); // [6,7]
-console.log(largest(0, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1])); // [0]
-console.log(largest(2, [-3, -2, -1, 0, -9, -8, -7, -6, -4, -5])); // [-1, 0]
-console.log(largest(3, [5, 1, 5, 2, 3, 1, 2, 3, 5])); // [5,5,5]
+// console.log(largest(2, [7, 6, 5, 4, 3, 2, 1])); // [6,7]
+// console.log(largest(0, [10, 9, 8, 7, 6, 5, 4, 3, 2, 1])); // [0]
+// console.log(largest(2, [-3, -2, -1, 0, -9, -8, -7, -6, -4, -5])); // [-1, 0]
+// console.log(largest(3, [5, 1, 5, 2, 3, 1, 2, 3, 5])); // [5,5,5]
+
+//4.  Descending order
+/*
+- Convert number to a string
+- Split the string into digits
+- Sort the string as number()
+- Convert the sorted numbers back to a string using join
+- convert back to a number
+*/
+
+// function descendingOrder(n) {
+//   let digitsArr = String(n).split("");
+//   let finalDigits = "";
+
+//   digitsArr
+//     .map((num) => Number(num))
+//     .sort((a, b) => b - a)
+//     .forEach((num) => (finalDigits += String(num)));
+//   return Number(finalDigits);
+// }
+
+// Refactor using parse Int
+
+function descendingOrder(num) {
+  return parseInt(String(num).split("").sort().reverse().join(""));
+}
+
+// console.log(descendingOrder(15));
+// console.log(descendingOrder(123456789));
+
+// Max Product Given an array of integers , Find the maximum product obtained from multiplying 2 adjacent numbers in the array. Note that the array size is at least 2 and consists a mixture of positive, negative integers and also zeroes.
+/*
+Examples
+[1, 2, 3] returns 6 because the maximum product is obtained from multiplying 2∗3=6
+[9, 5, 10, 2, 24, -1, -48] returns 50 because the maximum product is obtained from multiplying 5∗10=50
+[-23, 4, -5, 99, -27, 329, -2, 7, -921] returns -14 because the maximum product is obtained from multiplying  −2∗7=−14
+
+A: 
+
+- Initialize maxValue to the product of array[0] * array[1]
+- Iterate over the length of the array
+- Assign current to array[i] * array[i + 1]
+- Compare maxValue to current.  If current > maxValue, reassign maxVale to equal current
+- Return maxValue
+*/
+
+function adjacentElementsProduct(array) {
+  let maxValue = array[0] * array[1];
+
+  for (let i = 0; i < array.length - 1; i += 1) {
+    let current = array[i] * array[i + 1];
+    if (current > maxValue) {
+      maxValue = current;
+    }
+  }
+  return maxValue;
+}
+
+// console.log(adjacentElementsProduct([5, 8])); // 40
+// console.log(adjacentElementsProduct([1, 2, 3])); // 6
+// console.log(adjacentElementsProduct([1, 5, 10, 9])); // 90
+
+//Even Numbers
+
+// function evenNumbers(array, number) {
+//   let evens = [];
+//   array.forEach((num) => {
+//     if (num % 2 === 0) {
+//       evens.push(num);
+//     }
+//   });
+//   return evens.reverse().slice(0, number).reverse();
+// }
+
+function evenNumbers(array, number) {
+  return array
+    .filter((el) => el % 2 === 0)
+    .reverse()
+    .slice(0, number)
+    .reverse();
+}
+console.log(evenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
