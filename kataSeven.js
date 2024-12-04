@@ -167,4 +167,52 @@ function evenNumbers(array, number) {
     .slice(0, number)
     .reverse();
 }
-console.log(evenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
+// console.log(evenNumbers([1, 2, 3, 4, 5, 6, 7, 8, 9], 3));
+
+//Isograms - An isogram is a word that has no repeating letters, consecutive or non-consecutive. Implement a function that determines whether a string that contains only letters is an isogram. Assume the empty string is an isogram. Ignore letter case.
+
+function isIsogram(str) {
+  if (!str) {
+    return true;
+  }
+
+  str = str.toLowerCase();
+
+  for (let idx = 0; idx < str.length; idx++) {
+    if (str.indexOf(str[idx]) !== str.lastIndexOf(str[idx])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+// console.log(isIsogram(""));
+// console.log(isIsogram("Dermatoglyphics")); // true
+// console.log(isIsogram("isogram")); // true
+// console.log(isIsogram("aba")); // false
+// console.log(isIsogram("moOse")); // false
+
+// Digitize
+
+function digitize(n) {
+  return String(n)
+    .split("")
+    .map((el) => Number(el));
+}
+
+// console.log(digitize(123));
+
+function arithmetic(a, b, operator) {
+  switch (operator) {
+    case "add":
+      return a + b;
+    case "subtract":
+      return a - b;
+    case "multiply":
+      return a * b;
+    case "divide":
+      return a / b;
+  }
+}
+
+// console.log(arithmetic(4, 2, "divide"));
