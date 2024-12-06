@@ -313,3 +313,41 @@ function XO(str) {
 // console.log(XO("xxxm")); // false
 // console.log(XO("Oo")); // false
 // console.log(XO("ooom")); // false
+
+// Get the Middle Character
+
+// function getMiddle(word) {
+//   if (word.length % 2 === 0) {
+//     return word.slice(word.length / 2 - 1, word.length / 2 + 1);
+//   } else {
+//     return word.slice(word.length / 2, word.length / 2 + 1);
+//   }
+// }
+
+function getMiddle(word) {
+  return word.slice((word.length - 1) / 2, word.length / 2 + 1);
+}
+// console.log(getMiddle("test")); // es
+// console.log(getMiddle("testing")); // t
+// console.log(getMiddle("middle")); // t
+// console.log(getMiddle("A")); // t
+
+function maskify(string) {
+  if (string.length < 5) {
+    return string;
+  }
+
+  let firstPart = string.slice(0, string.length - 4);
+  let secondPart = string.slice(string.length - 4);
+
+  firstPart = firstPart
+    .split("")
+    .map((char) => char.replace(char, "#"))
+    .join("");
+
+  return firstPart + secondPart;
+}
+
+// console.log(maskify("3456"));
+console.log(maskify("1234345689018734"));
+console.log(maskify("123434568"));
