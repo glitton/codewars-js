@@ -216,3 +216,100 @@ function arithmetic(a, b, operator) {
 }
 
 // console.log(arithmetic(4, 2, "divide"));
+
+// Averages
+/*
+A:
+- Declare an average variable, initialize to an empty array
+- Iterate over the numbers array, get the average of the current and next numbers, push the value to average array
+- return the new average array
+*/
+
+function averages(numbers) {
+  let averageArray = [];
+  if (!Array.isArray(numbers) || numbers.length <= 1) {
+    return averageArray;
+  }
+
+  for (let idx = 0; idx < numbers.length - 1; idx += 1) {
+    averageArray.push((numbers[idx] + numbers[idx + 1]) / 2);
+  }
+  return averageArray;
+}
+
+// console.log(averages([2, 2, 2, 2, 2])); //[2, 2, 2, 2]
+// console.log(averages([2, -2, 2, -2, 2])); //[0, 0, 0, 0]
+// console.log(averages([1, 3, 5, 1, -10])); //[2, 4, 3, -4.5]
+// console.log(averages([])); //[]
+
+// isPalindrome, case insensitive
+/*
+- convert input string to lower case
+- slice the string in two parts
+- convert the strings to arrays
+- compare both strings with the second one in reverse
+- if they are equal return true, else false
+*/
+
+function isPalindrome(word) {
+  let originalWord = word.toLowerCase().split("").join("");
+  let reversedWord = word.toLowerCase().split("").reverse().join("");
+
+  return originalWord === reversedWord;
+}
+
+// console.log(isPalindrome("a"));
+// console.log(isPalindrome("aba"));
+// console.log(isPalindrome("Abba"));
+// console.log(isPalindrome("hello"));
+// console.log(isPalindrome("Bob"));
+// console.log(isPalindrome("Madam"));
+// console.log(isPalindrome("AbBa"));
+// console.log(isPalindrome(""));
+
+// Uppercase first letter
+
+function isUppercase(sentence) {
+  return sentence
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
+// console.log(isUppercase("How can mirrors be real if our eyes aren't real"));
+
+// X and O
+
+// function XO(str) {
+//   let x = 0;
+//   let o = 0;
+
+//   str.split("").forEach((char) => {
+//     if (char.toLowerCase() === "x") {
+//       x += 1;
+//     } else if (char.toLowerCase() === "o") {
+//       o += 1;
+//     }
+//   });
+
+//   if (x === o || (x === 0 && o === 0)) {
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
+
+//refactor using filter and length
+function XO(str) {
+  let strArr = str.toLowerCase().split("");
+  return (
+    strArr.filter((x) => x === "x").length ===
+    strArr.filter((o) => o === "o").length
+  );
+}
+
+console.log(XO("xo")); // true
+console.log(XO("xxOo")); // true
+console.log(XO("xxxm")); // false
+console.log(XO("Oo")); // false
+console.log(XO("ooom")); // false
