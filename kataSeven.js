@@ -349,5 +349,5 @@ function maskify(string) {
 }
 
 // console.log(maskify("3456"));
-console.log(maskify("1234345689018734"));
-console.log(maskify("123434568"));
+// console.log(maskify("1234345689018734"));
+// console.log(maskify("123434568"));
