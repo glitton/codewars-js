@@ -21,55 +21,74 @@ Iterate over the array of words
 Return finalString, trim end
 */
 
-function proofread(str) {
-  let strArray = str.split(" ");
-  let finalString = "";
-  let firstWord = "";
-  let otherWords = "";
+// function proofread(str) {
+//   let strArray = str.split(" ");
+//   let finalString = "";
+//   let previousEndedWithPeriod = false;
 
-  for (let idx = 0; idx < strArray.length; idx++) {
-    if (idx === 0) {
-      firstWord = capitalize(strArray[idx]);
-      finalString += `${firstWord} `;
-    } else if (strArray[idx - 1].includes(".")) {
-      otherWords = capitalize(strArray[idx]);
-      finalString += `${otherWords} `;
-    } else if (idx === 0 && strArray[idx].toLowerCase().includes("ie")) {
-      firstWord = correctSpelling(strArray[idx]);
-      firstWord = capitalize(firstWord);
-      finalString += `${firstWord} `;
-    } else if (
-      strArray[idx - 1].includes(".") &&
-      strArray[idx].toLowerCase().includes("ie")
-    ) {
-      otherWords = correctSpelling(strArray[idx]);
-      otherWords = capitalize(otherWords);
-      finalString += `${otherWords} `;
-    } else {
-      finalString += `${strArray[idx].toLowerCase()} `;
-    }
-  }
-  return finalString.trim();
-}
+//   strArray.forEach((word, index) => {
+//     // Check if current word ends with a period
+//     let endsWithPeriod = word.endsWith(".");
 
-function correctSpelling(word) {
-  return word.toLowerCase().replace(/ie/g, "ei");
-}
+//     // Replace "ie" with "ei" before any case changes for accuracy
+//     let correctedWord = word.replace(/ie/gi, "ei");
 
-function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-}
+//     // Capitalize if it's the first word or follows a period
+//     if (previousEndedWithPeriod || index === 0) {
+//       correctedWord = capitalize(correctedWord);
+//     } else {
+//       correctedWord = correctedWord.toLowerCase(); // Make all other words lowercase
+//     }
+
+//     // Update the period flag for the next iteration
+//     previousEndedWithPeriod = endsWithPeriod;
+
+//     // Append the corrected word to the final string
+//     finalString += `${correctedWord} `;
+//   });
+
+//   return finalString.trim(); // Remove any trailing space
+// }
 
 /*
 A:
 Loop through each word.
 Convert it to lowercase first to apply the spelling correction.
+  - Replace "ie" with "ei" while maintaining the capitalization.
 Check if the word starts with an uppercase or follows a period, and capitalize it if needed.
-Replace "ie" with "ei" while maintaining the capitalization.
+
 Append the processed word to the final result.
 */
-// console.log(correctSpelling("Niether"));
-// console.log(proofread("SHe wEnt CaNoIenG.")); // "She went canoeing."
+
+function proofread(sentence) {
+  let finalSentence = "";
+  let previousEndedWithPeriod = false; // Flag to track if the previous word ended with a period
+
+  sentence.split(" ").forEach((word, index) => {
+    let originalWord = word;
+    let correctedWord = correctSpelling(originalWord).toLowerCase(); // Correct spelling and convert to lower case
+
+    // Check if it needs to be capitalized based on punctuation
+    if (index === 0 || previousEndedWithPeriod) {
+      correctedWord = capitalize(correctedWord); // Capitalize the first word or after a period
+    }
+
+    finalSentence += `${correctedWord} `; // Append the processed word to the final sentence
+    previousEndedWithPeriod = originalWord.endsWith("."); // Update the flag based on the current word
+  });
+
+  return finalSentence.trim(); // Trim any trailing whitespace
+}
+
+function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function correctSpelling(word) {
+  return word.replace(/ie/gi, "ei"); // Correct "ie" to "ei" without case sensitivity
+}
+// console.log(correctSpelling("WiEght"));
+console.log(proofread("SHe wEnt CaNoIenG.")); // "She went canoeing."
 // console.log(proofread("He haD iEght ShOTs of CAffIEne")); //  "He had eight shots of caffeine"
 // console.log(
 //   proofread(
