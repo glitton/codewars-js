@@ -1,11 +1,6 @@
-function sayHello(name, city, state) {
-  return `Hello, ${name.join(" ")}! Welcome to ${city}, ${state}!`;
+function sum(numbers) {
+  if (numbers.length === 0) return 0;
+  return numbers.reduce((acc, curr) => acc + curr, 0);
 }
 
-// console.log(sayHello(["John", "Smith"], "Phoenix", "Arizona"));
-
-function take(arr, n) {
-  return arr.slice(0, n);
-}
-
-console.log(take([0, 1, 2, 3, 5, 8, 13], 3)); // [0, 1, 2]
+console.log(sum([1, 5.2, 4, 0, -1]));
