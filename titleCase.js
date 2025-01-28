@@ -18,20 +18,16 @@ A:
 capitalize helper function
 - initialize firstWordCapitalized variable
 - Iterate over the word
-  - capitalize the first letter by using slice(0, word.length).toUpperCase()
+  - capitalize the first letter (slice(0, word.length).toUpperCase())
 - return firstWordCapitalized
 */
 
-function titleCase(title, minorWords) {
+function titleCase(title, minorWords = "") {
   let titleArray = title.toLowerCase().split(" ");
   let finalSentence = "";
 
   let firstWord = capitalize(titleArray[0]);
   finalSentence += `${firstWord} `;
-
-  if (minorWords === "") {
-    titleArray.for;
-  }
 
   for (let idx = 1; idx < titleArray.length; idx++) {
     if (!minorWords.includes(titleArray[idx])) {
