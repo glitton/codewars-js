@@ -1,3 +1,2 @@
-let num = "65";
-
-console.log(charCodeAt(num));
+let text = "card-carrying";
+console.log(text.split("").sort());
