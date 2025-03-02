@@ -22,10 +22,7 @@ Return finalString
 */
 
 function stringTransformer(str) {
-  let strArrayReverse = str
-    .split(" ")
-    .filter((word) => word !== "")
-    .reverse();
+  let strArrayReverse = str.split(" ").reverse();
 
   return strArrayReverse
     .map((word) => {
